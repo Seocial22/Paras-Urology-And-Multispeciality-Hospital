@@ -117,7 +117,7 @@ const Navigation = () => {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 flex-shrink-0">
               <img
-                src="/images/logo.jpg"
+                src="/images/logo.webp"
                 alt="Hospital Logo"
                 className="h-10 md:h-12 lg:h-14 w-auto object-contain"
               />

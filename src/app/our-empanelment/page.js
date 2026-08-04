@@ -79,7 +79,7 @@ export default function EmpanelmentsPage() {
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Hero Section */}
      
-        <OtherHeroSection title="Our Empanelments" imageUrl="/images/hero.jpg" />
+        <OtherHeroSection title="Our Empanelments" imageUrl="/images/hero.webp" />
     
 
       {/* Main Content */}

@@ -52,7 +52,7 @@ export const metadata = {
 export default function AboutPage() {
     return (
         <>
-            <OtherHeroSection title={'About Us'} imageUrl={'/images/hero4.jpg'} />
+            <OtherHeroSection title={'About Us'} imageUrl={'/images/hero4.webp'} />
             <AboutUsSection />
             <VisionMissionSection />
             <DirectorSection />

@@ -33,7 +33,7 @@ export default function BookConsultationPage() {
 
   return (
     <>
-   <OtherHeroSection title="Book Appointment" imageUrl="/images/hero5.jpg" />
+   <OtherHeroSection title="Book Appointment" imageUrl="/images/hero5.webp" />
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
       {/* Hero Section */}
       <motion.div 

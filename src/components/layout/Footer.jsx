@@ -63,7 +63,7 @@ export default function Footer() {
             <div className="bg-white backdrop-blur-md p-4 rounded-xl w-fit mb-6">
               <div className="relative w-60 h-16">
                 <Image
-                  src="/images/logo.jpg"
+                  src="/images/logo.webp"
                   alt="Paras Hospital Logo"
                   fill
                   sizes="(max-width: 768px) 100vw, 240px"

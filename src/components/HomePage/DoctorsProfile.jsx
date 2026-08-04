@@ -35,7 +35,7 @@ export default function DoctorsProfile() {
       id: 2,
       name: "Dr. Minal Khasgiwala",
       position: "Medical Director OF Paras Urology and Multispeciality Hospital",
-      image: "/images/dr-minal1.jpg",
+      image: "/images/dr-minal1.webp",
       qualifications: ["M.B.B.S.", "M.D.", "Diploma Critical Care"],
       specialization: "Anesthesiology & Critical Care",
       experience: "20+ Years",

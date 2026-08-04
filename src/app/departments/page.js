@@ -188,7 +188,7 @@ export default function DepartmentsPage() {
     <>
       {selectedDepartment && <FullScreenView />}
 
-      <OtherHeroSection title="Our Departments" imageUrl="/images/hero1.jpg" />
+      <OtherHeroSection title="Our Departments" imageUrl="/images/hero1.webp" />
 
       <motion.section 
         className="py-16 px-4 md:px-8 bg-gray-50"

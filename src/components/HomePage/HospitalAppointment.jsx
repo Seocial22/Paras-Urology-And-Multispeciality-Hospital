@@ -12,7 +12,7 @@ export default function HospitalAppointment() {
       {/* Background Image on left side */}
       <div className="absolute left-0 top-0 bottom-0 w-1/2 opacity-30 hidden lg:block">
         <Image
-          src="/images/contact-form-bg.jpg"
+          src="/images/contact-form-bg.webp"
           alt="Hospital Background"
           fill
           className="object-cover"

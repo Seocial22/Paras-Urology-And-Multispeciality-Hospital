@@ -69,7 +69,7 @@ export default function AllDoctorsPage() {
       animate="show"
     >
       
-        <OtherHeroSection title={'Our Doctors'} imageUrl={'/images/hero2.jpg'} />
+        <OtherHeroSection title={'Our Doctors'} imageUrl={'/images/hero2.webp'} />
       
 
       {/* Doctors Grid */}

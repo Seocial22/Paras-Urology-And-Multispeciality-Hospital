@@ -34,7 +34,7 @@ export default function VisionMissionSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hospital-about.jpg"
+          src="/images/hospital-about.webp"
           alt="Hospital Background"
           fill
           className="object-cover"
@@ -164,7 +164,7 @@ export default function VisionMissionSection() {
                 whileHover={{ scale: 1.02 }}
               >
                 <Image
-                  src="/images/billing-counter.jpg"
+                  src="/images/billing-counter.webp"
                   alt="Billing Counter"
                   fill
                   className="object-cover"
@@ -178,7 +178,7 @@ export default function VisionMissionSection() {
                 whileHover={{ scale: 1.02 }}
               >
                 <Image
-                  src="/images/general-ward.jpg"
+                  src="/images/general-ward.webp"
                   alt="General Ward"
                   fill
                   className="object-cover"
@@ -192,7 +192,7 @@ export default function VisionMissionSection() {
                 whileHover={{ scale: 1.02 }}
               >
                 <Image
-                  src="/images/medical-equipments.jpg"
+                  src="/images/medical-equipments.webp"
                   alt="Medical Equipment"
                   fill
                   className="object-cover"
@@ -206,7 +206,7 @@ export default function VisionMissionSection() {
                 whileHover={{ scale: 1.02 }}
               >
                 <Image
-                  src="/images/hospital-about.jpg"
+                  src="/images/hospital-about.webp"
                   alt="Hospital Building"
                   fill
                   className="object-cover"

@@ -85,7 +85,7 @@ export const deleteFromCloudinary = async (publicId) => {
  */
 export const extractPublicId = (url) => {
   try {
-    // Example URL: https://res.cloudinary.com/dnd8u5sll/image/upload/v1234567890/paras-hospital/image.jpg
+    // Example URL: https://res.cloudinary.com/dnd8u5sll/image/upload/v1234567890/paras-hospital/image.webp
     const urlParts = url.split('/');
     const uploadIndex = urlParts.findIndex(part => part === 'upload');
     
