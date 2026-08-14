@@ -15,6 +15,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
   metadataBase: new URL("https://parashospitalajmer.com"),
   title: "Best Multispeciality Hospital in Ajmer | Paras Urology & Multispeciality Hospital",
   description:
@@ -68,6 +77,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+        
+        
         <meta name="google-site-verification" content="uvVmgPCmtOslVBxggqoaif8cJR_FVIook0RrDdh5ZNw" />
         <meta name="google-site-verification" content="mNrlj3hhLLx7Xw-HoRZVIvEp8WpQ2FTcvfPdgEa59SY" />
       </head>
