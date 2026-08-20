@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+
   robots: {
-    index: false,
-    follow: false,
-    nocache: true,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   },
   metadataBase: new URL("https://parashospitalajmer.com"),
@@ -56,10 +56,6 @@ export const metadata = {
       "Leading healthcare provider in Ajmer offering comprehensive medical services in Urology and other specialities.",
     images: ["/images/hospital-about.png"],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
   other: {
     "application-name": "Paras Urology & Multispeciality Hospital",
     author: "Dr. Rajkumar Khasgiwala",
@@ -71,15 +67,15 @@ export const metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
+  
+
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <meta name="robots" content="noindex, nofollow, noarchive" />
-        
-        
+
         <meta name="google-site-verification" content="uvVmgPCmtOslVBxggqoaif8cJR_FVIook0RrDdh5ZNw" />
         <meta name="google-site-verification" content="mNrlj3hhLLx7Xw-HoRZVIvEp8WpQ2FTcvfPdgEa59SY" />
       </head>

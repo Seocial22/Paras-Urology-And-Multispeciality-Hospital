@@ -39,16 +39,6 @@ const nextConfig = {
           },
         ],
       },
-      // Block access to sensitive source files
-      {
-        source: '/:path(.env*|.git*|.htaccess|.htpasswd|wp-config*|docker-compose*)',
-        headers: [
-          {
-            key: 'X-Robots-Tag',
-            value: 'noindex, nofollow',
-          },
-        ],
-      },
     ];
   },
 
