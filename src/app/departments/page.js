@@ -89,12 +89,12 @@ export default function DepartmentsPage() {
     return (
       <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200">
         {/* Image with title overlay */}
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-64 overflow-hidden bg-white">
           {department.imageUrl ? (
             <img
               src={department.imageUrl}
               alt={department.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain p-3"
             />
           ) : (
             <div className="flex items-center justify-center h-full bg-gradient-to-br from-blue-100 to-indigo-200">
@@ -161,7 +161,7 @@ export default function DepartmentsPage() {
             <img
               src={selectedDepartment.imageUrl}
               alt={selectedDepartment.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain p-3"
             />
           ) : (
             <div className="flex items-center justify-center h-full bg-gradient-to-br from-blue-100 to-indigo-300">

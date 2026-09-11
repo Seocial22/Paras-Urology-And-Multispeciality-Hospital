@@ -23,7 +23,7 @@ export const metadata = {
       "Welcome to Paras Urology & Multispeciality Hospital (PUMH). We provide advanced medical care in Urology, Nephrology, and more.",
     images: [
       {
-        url: "/images/hospital-about.png",
+        url: "/images/hospital-about.webp",
         width: 1200,
         height: 630,
         alt: "Paras Urology & Multispeciality Hospital Ajmer",

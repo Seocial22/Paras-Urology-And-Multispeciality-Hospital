@@ -23,25 +23,17 @@ const DOCTORS_COLLECTION = 'doctors';
  */
 export const getDoctors = async () => {
   try {
+    // Client-side pages use the server API so visitors do not need direct
+    // Firestore permissions. Server-only callers (such as sitemap generation)
+    // retain the existing Firestore query.
+    if (typeof window !== 'undefined') {
+      const response = await fetch('/api/doctors', { cache: 'no-store' });
+      return await response.json();
+    }
+
     const doctorsRef = collection(db, DOCTORS_COLLECTION);
-    // const q = query(doctorsRef, orderBy('createdAt', 'desc'));
-
-    const q = query(
-  doctorsRef,
-  orderBy('displayOrder', 'asc'),   // 👈 First priority
-    
-);
-
-    const querySnapshot = await getDocs(q);
-
-    const doctors = [];
-    querySnapshot.forEach((doc) => {
-      doctors.push({
-        id: doc.id,
-        ...doc.data()
-      });
-    });
-
+    const querySnapshot = await getDocs(query(doctorsRef, orderBy('displayOrder', 'asc')));
+    const doctors = querySnapshot.docs.map((doctor) => ({ id: doctor.id, ...doctor.data() }));
     return { success: true, data: doctors };
   } catch (error) {
     console.error('Error getting doctors:', error);
@@ -83,6 +75,15 @@ export const getDoctor = async (doctorId) => {
  */
 export const getDoctorBySlug = async (slug) => {
   try {
+    // Keep public doctor lookups on the server API. Direct client-side
+    // Firestore reads can be rejected by the site's security rules.
+    if (typeof window !== 'undefined') {
+      const response = await fetch(`/api/doctors/${encodeURIComponent(slug)}`, {
+        cache: 'no-store',
+      });
+      return await response.json();
+    }
+
     const doctorsRef = collection(db, DOCTORS_COLLECTION);
     const q = query(doctorsRef, where('slug', '==', slug));
     const querySnapshot = await getDocs(q);
@@ -127,26 +128,13 @@ export const createSlug = (name) => {
  */
 export const addDoctor = async (doctorData) => {
   try {
-    const slug = createSlug(doctorData.name);
-    const doctorRef = doc(collection(db, DOCTORS_COLLECTION));
-
-    const newDoctor = {
-      ...doctorData,
-      slug,
-      displayOrder: doctorData.displayOrder || 0,  // 👈 NEW FIELD
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp()
-    };
-
-    await setDoc(doctorRef, newDoctor);
-
-    return {
-      success: true,
-      data: {
-        id: doctorRef.id,
-        ...newDoctor
-      }
-    };
+    const response = await fetch('/api/admin/doctors', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(doctorData),
+    });
+    return await response.json();
   } catch (error) {
     console.error('Error adding doctor:', error);
     return { success: false, error: error.message };
@@ -162,24 +150,13 @@ export const addDoctor = async (doctorData) => {
  */
 export const updateDoctor = async (doctorId, doctorData) => {
   try {
-    const doctorRef = doc(db, DOCTORS_COLLECTION, doctorId);
-
-    const updatedDoctor = {
-      ...doctorData,
-      slug: createSlug(doctorData.name),
-      displayOrder: doctorData.displayOrder,  // 👈 NEW FIELD
-      updatedAt: serverTimestamp()
-    };
-
-    await setDoc(doctorRef, updatedDoctor, { merge: true });
-
-    return {
-      success: true,
-      data: {
-        id: doctorId,
-        ...updatedDoctor
-      }
-    };
+    const response = await fetch('/api/admin/doctors', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ id: doctorId, ...doctorData }),
+    });
+    return await response.json();
   } catch (error) {
     console.error('Error updating doctor:', error);
     return { success: false, error: error.message };
@@ -194,10 +171,13 @@ export const updateDoctor = async (doctorId, doctorData) => {
  */
 export const deleteDoctor = async (doctorId) => {
   try {
-    const doctorRef = doc(db, DOCTORS_COLLECTION, doctorId);
-    await deleteDoc(doctorRef);
-
-    return { success: true };
+    const response = await fetch('/api/admin/doctors', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ id: doctorId }),
+    });
+    return await response.json();
   } catch (error) {
     console.error('Error deleting doctor:', error);
     return { success: false, error: error.message };

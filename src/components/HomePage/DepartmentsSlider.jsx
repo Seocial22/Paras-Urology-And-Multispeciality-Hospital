@@ -65,12 +65,12 @@ export default function DepartmentsSlider() {
         className="cursor-pointer bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full"
       >
         {/* Image - Increased height on mobile */}
-        <div className="relative h-56 sm:h-64 overflow-hidden">
+        <div className="relative h-56 sm:h-64 overflow-hidden bg-white">
           {department.imageUrl ? (
             <img
               src={department.imageUrl}
               alt={department.title}
-              className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+              className="w-full h-full object-contain p-3 transition-transform duration-500"
             />
           ) : (
             <div className="flex items-center justify-center h-full bg-gradient-to-br from-blue-100 to-indigo-200">
@@ -122,7 +122,7 @@ export default function DepartmentsSlider() {
             <img
               src={selectedDepartment.imageUrl}
               alt={selectedDepartment.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain p-3"
             />
           ) : (
             <div className="flex items-center justify-center h-full bg-gradient-to-br from-blue-100 to-indigo-300">
@@ -249,38 +249,6 @@ export default function DepartmentsSlider() {
         </div>
       </section>
 
-      {/* Pagination Styling */}
-      <style jsx global>{`
-        .swiper-pagination-custom .swiper-pagination-bullet {
-          width: 12px;
-          height: 12px;
-          background: #cbd5e1;
-          opacity: 1;
-          transition: all 0.3s;
-        }
-
-        .swiper-pagination-custom .swiper-pagination-bullet-active {
-          width: 32px;
-          border-radius: 6px;
-          background: #002b4a;
-        }
-
-        .departments-swiper {
-          padding-bottom: 20px;
-        }
-
-        .departments-swiper .swiper-slide {
-          height: auto;
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 640px) {
-          .swiper-button-prev-custom,
-          .swiper-button-next-custom {
-            opacity: 0.9;
-          }
-        }
-      `}</style>
     </>
   );
 }

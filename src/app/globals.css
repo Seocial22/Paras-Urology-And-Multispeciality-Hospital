@@ -46,3 +46,19 @@ body {
 button {
   cursor: pointer;
 }
+
+/* Departments slider */
+.departments-swiper {
+  padding-bottom: 20px;
+}
+
+.departments-swiper .swiper-slide {
+  height: auto;
+}
+
+@media (max-width: 640px) {
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    opacity: 0.9;
+  }
+}

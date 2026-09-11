@@ -306,7 +306,7 @@ export default function DepartmentManagementPanel() {
                     <img
                       src={imagePreview}
                       alt="Preview"
-                      className="w-full max-w-md h-48 object-cover rounded-lg border-2 border-blue-500 shadow-sm"
+                      className="w-full max-w-md h-48 object-contain bg-white p-2 rounded-lg border-2 border-blue-500 shadow-sm"
                     />
                     {editingDepartment && imageFile && (
                       <div className="absolute top-2 right-2 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
@@ -386,12 +386,12 @@ export default function DepartmentManagementPanel() {
                   key={department.id}
                   className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white"
                 >
-                  <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center overflow-hidden">
+                  <div className="h-48 bg-white flex items-center justify-center overflow-hidden">
                     {department.imageUrl ? (
                       <img
                         src={department.imageUrl}
                         alt={department.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-contain p-3 transition-transform duration-300"
                       />
                     ) : (
                       <Building2 className="w-20 h-20 text-blue-400" />

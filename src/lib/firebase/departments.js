@@ -1,21 +1,27 @@
 import { db } from './config';
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 
 const COLLECTION_NAME = 'departments';
 
 export async function getDepartments() {
   try {
+    // Browser pages load public data through the server API.
+    if (typeof window !== 'undefined') {
+      const response = await fetch('/api/departments', { cache: 'no-store' });
+      return await response.json();
+    }
+
+    // Server-only callers retain the Firestore query.
     const querySnapshot = await getDocs(collection(db, COLLECTION_NAME));
-    const departments = querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
+    const departments = querySnapshot.docs.map((department) => ({
+      id: department.id,
+      ...department.data(),
     }));
 
-    // Sort logic: ascending order by ordernumber
-    departments.sort((a, b) => {
-      const orderA = typeof a.ordernumber === 'number' ? a.ordernumber : 9999;
-      const orderB = typeof b.ordernumber === 'number' ? b.ordernumber : 9999;
-      return orderA - orderB;
+    departments.sort((first, second) => {
+      const firstOrder = typeof first.ordernumber === 'number' ? first.ordernumber : 9999;
+      const secondOrder = typeof second.ordernumber === 'number' ? second.ordernumber : 9999;
+      return firstOrder - secondOrder;
     });
 
     return { success: true, data: departments };
@@ -26,11 +32,14 @@ export async function getDepartments() {
 
 export async function addDepartment(departmentData) {
   try {
-    const docRef = await addDoc(collection(db, COLLECTION_NAME), {
-      ...departmentData,
-      createdAt: new Date().toISOString()
+    const response = await fetch('/api/admin/departments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(departmentData),
     });
-    return { success: true, id: docRef.id };
+
+    return await response.json();
   } catch (error) {
     return { success: false, error: error.message };
   }
@@ -38,11 +47,14 @@ export async function addDepartment(departmentData) {
 
 export async function updateDepartment(id, departmentData) {
   try {
-    await updateDoc(doc(db, COLLECTION_NAME, id), {
-      ...departmentData,
-      updatedAt: new Date().toISOString()
+    const response = await fetch('/api/admin/departments', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ id, ...departmentData }),
     });
-    return { success: true };
+
+    return await response.json();
   } catch (error) {
     return { success: false, error: error.message };
   }
@@ -50,8 +62,14 @@ export async function updateDepartment(id, departmentData) {
 
 export async function deleteDepartment(id) {
   try {
-    await deleteDoc(doc(db, COLLECTION_NAME, id));
-    return { success: true };
+    const response = await fetch('/api/admin/departments', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ id }),
+    });
+
+    return await response.json();
   } catch (error) {
     return { success: false, error: error.message };
   }
